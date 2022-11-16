@@ -1,15 +1,27 @@
 // Get Component
 let resultEl = document.querySelector('#generated');
 let btnEl = document.querySelector('#btn-generate');
+let btnVisitEl = document.querySelector('#btn-visit');
 
-// Functionality
+let nuclearCode = 177013; 
+
+// Functionality / Events
 btnEl.addEventListener("click", ()=>{
-    resultEl.textContent = generateCode();
-}) //BTN Clicked
+    nuclearCode = generateCode(4); //Set code
+    resultEl.textContent = nuclearCode;
+}) 
+
+btnVisitEl.addEventListener("click", ()=>{
+    window.open(`https://nhentai.net/g/${getNuclearCode()}`)
+})
+
+function getNuclearCode() {
+    return nuclearCode;
+}
 
 
 // Main Generator Function
-function generateCode(){
+function generateCode(prefix = undefined){
     // return 177013;
 
     // Base Number Variables
@@ -23,6 +35,13 @@ function generateCode(){
         getRandomRange(9)   // 6    0 <=> 9
 
     ];
+
+
+    // Add prefix Functionality to start a specific number
+    if(prefix != undefined){
+        if(prefix > 4 || prefix <= 0) prefix = 0; //Limit the prefix
+        num1 = prefix;
+    }
 
 
     // Generate Rules And Exception

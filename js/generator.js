@@ -16,6 +16,8 @@ let nuclearCode = 177013;
 btnEl.addEventListener("click", ()=>{
     nuclearCode = generateCode(getUsePrefix()); //Set code
     resultEl.textContent = nuclearCode;
+
+    btnSaveEl.disabled = false;
 }) 
 
 btnVisitEl.addEventListener("click", ()=>{
@@ -24,6 +26,7 @@ btnVisitEl.addEventListener("click", ()=>{
 
 btnSaveEl.addEventListener("click", ()=>{
     addToList(nuclearCode);
+    btnSaveEl.disabled = canAddToList();
 })
 
 function getNuclearCode() {
@@ -112,7 +115,7 @@ function concatNumber(...nums){
 // List Functions
 function addToList(codes){
 
-    if(codeInList.includes(codes)) return;
+    if(!canAddToList(codes)) return;
     let listEl = document.createElement("div");
     listEl.classList.add("code-list_item");
     listEl.innerHTML = `
@@ -123,6 +126,10 @@ function addToList(codes){
 
     codeInList.push(codes);
 
+}
+
+function canAddToList(code){
+    return !codeInList.includes(code);
 }
 
 // Delete List

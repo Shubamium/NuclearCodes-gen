@@ -171,6 +171,11 @@ function addToList(codes, pushToArr = true){
 
 }
 
+function clearList(){
+    codeInList = [];
+    refreshTheList();
+    saveData();
+}
 function refreshTheList(){
     // Clear the list
     while(listContainerEl.firstChild){

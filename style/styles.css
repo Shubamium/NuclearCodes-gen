@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;300;400;500;700;900&display=swap');
+/* Simpel Reset */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+:root{
+    --mainAccent: #EC2854;
+    --lighterAccent: #F15478;
+    --black:#0D0D0D;
+    --darker:#1F1F1F;
+    --dark:#1F1F1F;
+    --greyer:#363636;
+    --grey:#4D4D4D;
+}   
+
+body{
+    color: white;
+    background-color: var(--black);
+}

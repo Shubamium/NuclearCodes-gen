@@ -42,8 +42,8 @@ function saveData(){
 // Functionality / Events
 btnEl.addEventListener("click", ()=>{
     nuclearCode = generateCode(getUsePrefix()); //Set code
-    resultEl.textContent = nuclearCode;
-
+    // resultEl.textContent = nuclearCode;
+    showResult(nuclearCode);
     btnSaveEl.disabled = false;
 });
 
@@ -127,6 +127,48 @@ function generateCode(prefix = false){
     // Save the data
     return generatedNumber;
 
+}
+
+// Function to display the code
+function showResult(code){
+
+    // Convert the code into a string type
+    let stringifyCode = '' + code;
+    
+    // Clear the container
+    resultEl.innerHTML = "";
+
+    // Divide each letter into a span
+    for(let i = 0; i < stringifyCode.length; i++){
+
+        // Construct the element
+        const letter = document.createElement("span");
+        letter.classList = ["code_letter"];
+        letter.innerText = stringifyCode[i];
+
+        // Base Style
+        letter.style.position = "relative";
+        letter.style.left = "100px";
+        letter.style.opacity = "0";
+
+        // Append the element to the container
+        resultEl.appendChild(letter);
+        
+        // Add Animation 
+        letter.animate([
+            {
+                left:"0px",
+                opacity:1
+            }
+        ],{
+            duration: 350,
+            easing:"ease",
+            // Add staggering
+            delay: `${(i+1) * 1.2 * 100}`,
+            fill: "forwards"
+        })
+        
+    }
 }
 
 // Generate a number between range

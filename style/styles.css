@@ -56,12 +56,14 @@ main{
 
 .title-section{
     background-color: var(--darker);
-    padding: 1em;
+    /* padding: 1em; */
     margin: 1em;
+    text-align: center;
 }
 
     .title{
         text-align: center;
+        font-weight: bolder;
     }
 
 .configuration{
@@ -119,7 +121,7 @@ button:active{
     align-items: center;
 }
 .action button{
-    padding: .6em 1.2em;
+    padding: .9em 1.2em;
     margin: 0 .3em;
     font-size: .9rem;
     font-weight: bold;
@@ -128,7 +130,7 @@ button:active{
 }
 
 .action #btn-save{
-    --bgColor:var(--grey);
+    --bgColor: var(--greyer);
 }
 
 .action #btn-visit{
@@ -153,6 +155,16 @@ button:active{
     border: 2px solid var(--mainAccent);
 }
 
+.list-action{
+    background-color: var(--semiDark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.list-action #btn-clear{
+    padding:1em 2em;
+    font-size: auto;
+}
 
 #code-list{
     padding: 10px;
@@ -273,4 +285,22 @@ input[type=number]::-webkit-outer-spin-button {
     .options #prefix{
         /* max-width: 40%; */
         width: 100%;
+    }
+
+
+.code-part{
+}
+
+.code-part #generated{
+    font-size: 4rem;
+    background-color: var(--semiDark);
+    margin: .2em 0;
+    padding: .2em .5em;
+}
+
+    .code-part #generated .code_letter{
+        margin: 0 .1em;
+        position: relative;
+        background-color: var(--dark);
+        padding: 0 .3em;
     }

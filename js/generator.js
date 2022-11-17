@@ -4,6 +4,7 @@ let resultEl = document.querySelector('#generated');
 let btnEl = document.querySelector('#btn-generate');
 let btnVisitEl = document.querySelector('#btn-visit');
 let btnSaveEl = document.querySelector('#btn-save');
+
 let listContainerEl = document.querySelector('#code-list');
 let usePrefixEl = document.querySelector('#use-prefix');
 let prefixEl = document.querySelector('#prefix');
@@ -12,22 +13,48 @@ let codeInList = [];
 
 let nuclearCode = 177013; 
 
+function restoreData(){
+
+    // Fetch the data from localstorage
+    let listData = localStorage.getItem("listData");
+    if(listData === null) return;
+
+    codeInList = JSON.parse(listData).list;
+    
+    // Refresh the list
+    refreshTheList();
+}
+
+// Restore at the start
+document.addEventListener("DOMContentLoaded", ()=>{
+    restoreData();
+});
+
+
+function saveData(){
+    let listObj = {
+        list: codeInList
+    }
+    localStorage.setItem("listData",JSON.stringify(listObj));
+}
+
 // Functionality / Events
 btnEl.addEventListener("click", ()=>{
     nuclearCode = generateCode(getUsePrefix()); //Set code
     resultEl.textContent = nuclearCode;
 
     btnSaveEl.disabled = false;
-}) 
+});
 
 btnVisitEl.addEventListener("click", ()=>{
     window.open(`https://nhentai.net/g/${getNuclearCode()}`)
-})
+});
 
 btnSaveEl.addEventListener("click", ()=>{
     addToList(nuclearCode);
     btnSaveEl.disabled = canAddToList();
-})
+
+});
 
 function getNuclearCode() {
     return nuclearCode;
@@ -88,6 +115,8 @@ function generateCode(prefix = false){
     let generatedNumber = concatNumber(num1,num2,num3,num4,num5,num6);
     generatedNumber = parseInt(generatedNumber,10);
 
+
+    // Save the data
     return generatedNumber;
 
 }
@@ -113,9 +142,11 @@ function concatNumber(...nums){
 
 
 // List Functions
-function addToList(codes){
+function addToList(codes, pushToArr = true){
 
-    if(!canAddToList(codes)) return;
+    if(!canAddToList(codes) && pushToArr) return;
+    console.log("caled");
+
     let listEl = document.createElement("div");
     listEl.classList.add("code-list_item");
     listEl.innerHTML = `
@@ -124,8 +155,24 @@ function addToList(codes){
     `
     listContainerEl.appendChild(listEl);
 
-    codeInList.push(codes);
+    if(pushToArr){
+        codeInList.push(codes);
+        saveData();
 
+    }
+
+}
+
+function refreshTheList(){
+    // Clear the list
+    while(listContainerEl.firstChild){
+        listContainerEl.firstChild.remove();
+    }
+
+    codeInList.forEach((code)=>{
+        // Add everytime without adding it to the list again
+        addToList(code, false);
+    })
 }
 
 function canAddToList(code){

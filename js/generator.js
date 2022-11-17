@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 
 function saveData(){
+    console.log("data saved");
     let listObj = {
         list: codeInList
     }
@@ -145,7 +146,7 @@ function concatNumber(...nums){
 function addToList(codes, pushToArr = true){
 
     if(!canAddToList(codes) && pushToArr) return;
-    console.log("caled");
+    // console.log("caled");
 
     let listEl = document.createElement("div");
     listEl.classList.add("code-list_item");
@@ -182,12 +183,13 @@ function canAddToList(code){
 // Delete List
 function deleteThis(btn){
     const parentEl = btn.parentElement;
-    let text = parentEl.querySelector(".code");
+    let text = parentEl.querySelector(".code").textContent;
     let number = parseInt(text);
 
     // Remove the element from list
-    codeInList.shift(number);
-
+    codeInList = codeInList.filter(num => num != number);
+    
+    saveData();
     parentEl.remove();
 }
 

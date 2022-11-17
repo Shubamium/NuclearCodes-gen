@@ -1,13 +1,20 @@
+
 // Get Component
 let resultEl = document.querySelector('#generated');
 let btnEl = document.querySelector('#btn-generate');
 let btnVisitEl = document.querySelector('#btn-visit');
+let btnSaveEl = document.querySelector('#btn-save');
+let listContainerEl = document.querySelector('#code-list');
+let usePrefixEl = document.querySelector('#use-prefix');
+let prefixEl = document.querySelector('#prefix');
+
+let codeInList = [];
 
 let nuclearCode = 177013; 
 
 // Functionality / Events
 btnEl.addEventListener("click", ()=>{
-    nuclearCode = generateCode(4); //Set code
+    nuclearCode = generateCode(4, getUsePrefix() == true ? true : undefined); //Set code
     resultEl.textContent = nuclearCode;
 }) 
 
@@ -15,9 +22,18 @@ btnVisitEl.addEventListener("click", ()=>{
     window.open(`https://nhentai.net/g/${getNuclearCode()}`)
 })
 
+btnSaveEl.addEventListener("click", ()=>{
+    addToList(nuclearCode);
+})
+
 function getNuclearCode() {
     return nuclearCode;
 }
+
+function getUsePrefix() {
+    console.log(usePrefixEl.checked);
+    return usePrefixEl.checked;
+}  
 
 
 // Main Generator Function
@@ -38,10 +54,11 @@ function generateCode(prefix = undefined){
 
 
     // Add prefix Functionality to start a specific number
-    if(prefix != undefined){
-        if(prefix > 4 || prefix <= 0) prefix = 0; //Limit the prefix
-        num1 = prefix;
+    if(prefix != undefined && prefixEl.value != ""){
+        num1 = parseInt(prefixEl.value);
+        console.log(prefixEl.value);
     }
+
 
 
     // Generate Rules And Exception
@@ -64,13 +81,13 @@ function generateCode(prefix = undefined){
 
     }
 
- 
 
     // Concat all of the generated numbers and return it
     let generatedNumber = concatNumber(num1,num2,num3,num4,num5,num6);
     generatedNumber = parseInt(generatedNumber,10);
 
     return generatedNumber;
+
 }
 
 // Generate a number between range
@@ -90,3 +107,37 @@ function concatNumber(...nums){
 
     return result;
 }
+
+
+
+// List Functions
+
+function addToList(codes){
+
+    if(codeInList.includes(codes)) return;
+    let listEl = document.createElement("div");
+    listEl.classList.add("code-list_item");
+    listEl.innerHTML = `
+        <p class="code">${codes}</p>
+        <button class="btn-del" onclick="deleteThis()">Remove</div>
+    `
+    listContainerEl.appendChild(listEl);
+
+    codeInList.push(codes);
+
+    console.log(codeInList);
+}
+
+
+// Input Validation
+function limiter(input) {
+    try {
+        input.value = parseInt(input.value);
+    } catch (error) {
+        input.value = 0;
+    }
+
+    // if(Number.isInteger(input.value)) input.value = 0;
+    if (input.value < 0) input.value = 0;
+    if (input.value > 4) input.value = 4;
+ }

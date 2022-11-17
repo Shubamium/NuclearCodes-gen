@@ -48,10 +48,7 @@ btnEl.addEventListener("click", ()=>{
 });
 
 btnVisitEl.addEventListener("click", ()=>{
-    const str1 = "ta";
-    const str2 = "hen";
-
-    window.open(`https://n${str2}${str1}i.net/g/${getNuclearCode()}`)
+    openCode(getNuclearCode());
 });
 
 btnSaveEl.addEventListener("click", ()=>{
@@ -59,6 +56,13 @@ btnSaveEl.addEventListener("click", ()=>{
     btnSaveEl.disabled = canAddToList();
 
 });
+
+function openCode(code){
+    const str1 = "ta";
+    const str2 = "hen";
+
+    window.open(`https://n${str2}${str1}i.net/g/${code}`)
+}
 
 function getNuclearCode() {
     return nuclearCode;
@@ -154,7 +158,7 @@ function addToList(codes, pushToArr = true){
     let listEl = document.createElement("div");
     listEl.classList.add("code-list_item");
     listEl.innerHTML = `
-        <p class="code">${codes}</p>
+        <a class="code" onclick="openCode(${codes} );">${codes}</a>
         <button class="btn-del" onclick="deleteThis(this)"><i class="fa-solid fa-trash-can"></i></div>
     `
     listContainerEl.appendChild(listEl);

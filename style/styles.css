@@ -160,14 +160,15 @@ button:active{
 
     #code-list .code-list_item a{
         color: white;
-        
+        cursor: pointer;
     }
     #code-list .code-list_item a:hover{
         color: var(--mainAccent);
+        text-decoration: underline;
     }
     #code-list .code-list_item a:visited{
         color:  var(--darkerAccent);
-        text-decoration:dashed;
+        text-decoration:line-through;
     }
 
     #code-list .btn-del{

@@ -48,7 +48,10 @@ btnEl.addEventListener("click", ()=>{
 });
 
 btnVisitEl.addEventListener("click", ()=>{
-    window.open(`https://nhentai.net/g/${getNuclearCode()}`)
+    const str1 = "ta";
+    const str2 = "hen";
+
+    window.open(`https://n${str2}${str1}i.net/g/${getNuclearCode()}`)
 });
 
 btnSaveEl.addEventListener("click", ()=>{
@@ -84,7 +87,7 @@ function generateCode(prefix = false){
 
 
     // Add prefix Functionality to start a specific number
-    if(prefix === true){
+    if(prefix === true && prefixEl.value != "" ){
         num1 = parseInt(prefixEl.value);
         console.log(prefixEl.value);
     }
@@ -152,7 +155,7 @@ function addToList(codes, pushToArr = true){
     listEl.classList.add("code-list_item");
     listEl.innerHTML = `
         <p class="code">${codes}</p>
-        <button class="btn-del" onclick="deleteThis(this)">Remove</div>
+        <button class="btn-del" onclick="deleteThis(this)"><i class="fa-solid fa-trash-can"></i></div>
     `
     listContainerEl.appendChild(listEl);
 
@@ -188,7 +191,7 @@ function deleteThis(btn){
 
     // Remove the element from list
     codeInList = codeInList.filter(num => num != number);
-    
+
     saveData();
     parentEl.remove();
 }

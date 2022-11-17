@@ -71,7 +71,6 @@ main{
     border-radius: 1vmin;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
 }
 
 
@@ -90,7 +89,14 @@ main{
         width: 100%;
     }
 
+.title-section .sub-title{
+    font-weight: 300;
+    opacity: .6;
+}
 
+    .title-section .sub-title u{
+
+    }
 /* Button Styling */
 button{
     --bgColor:var(--mainAccent);
@@ -108,13 +114,17 @@ button:active{
     scale: .9;
 }
 
-
+.action {
+    display: flex;
+    align-items: center;
+}
 .action button{
-    padding: .9rem;
+    padding: .6em 1.2em;
     margin: 0 .3em;
-    font-size: 1.1rem;
+    font-size: .9rem;
     font-weight: bold;
     border-radius: .2em;
+    white-space: nowrap;
 }
 
 .action #btn-save{
@@ -133,6 +143,15 @@ button:active{
     color: var(--greyer);
 }
 
+.action #btn-visit{
+    --bgColor: var(--semiDark);
+    border: 2px solid var(--mainAccent);
+    transition: all 100ms ease;
+}
+.action #btn-visit:hover{
+    --bgColor: var(--mainAccent);
+    border: 2px solid var(--mainAccent);
+}
 
 
 #code-list{
@@ -178,4 +197,80 @@ button:active{
     }
     #code-list .btn-del:active{
         scale: 1;
+    }
+
+
+
+input{
+    background-color: var(--greyer);
+    border: none;
+    padding: 0 .4em;
+    font-size: 1.2rem;
+    color: white;
+    border-radius: .3em;
+    accent-color: var(--mainAccent);
+    transition: all 250ms;
+}
+input::placeholder{
+    color: var(--grey);
+}
+
+input:disabled{
+    color: #171717;
+    background-color: var(--darker);
+}
+
+input:focus{
+    outline: none;
+    border: 1px solid var(--mainAccent);
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+}
+
+
+.options{
+    display: flex;
+    width: min(40%,400px);
+    gap: 1em;
+}
+    .options .usePrefixCheck{
+        background-color: var(--dark);
+        border: 1px solid transparent;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        font-size: .7rem;
+        padding: .5em;
+        text-align: center;
+        color: #363636;
+        
+
+        cursor: pointer;
+        user-select: none;
+        font-weight: bold;
+        white-space:nowrap;
+        transition: all 250ms ease;
+
+    }
+    .options .usePrefixCheck.checked{
+        background-color: var(--mainAccent);
+        color: #400B1B;
+        border: 1px solid white;
+    }
+    .options .usePrefixCheck:hover{
+        transform: scale(1.1);
+    }
+    .options .usePrefixCheck i{
+        font-size: 1rem;
+    }
+
+    .options #prefix{
+        /* max-width: 40%; */
+        width: 100%;
     }

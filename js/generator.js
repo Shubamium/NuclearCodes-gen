@@ -212,3 +212,12 @@ function limiter(input) {
     if (input.value < 0) input.value = 0;
     if (input.value > 4) input.value = 4;
  }
+
+
+ function toggleUsePrefix(el){
+    el.classList.toggle('checked');
+    prefixEl.disabled = !el.classList.contains('checked');
+    usePrefixEl.checked = el.classList.contains('checked');
+
+    limiter(prefixEl);
+ }

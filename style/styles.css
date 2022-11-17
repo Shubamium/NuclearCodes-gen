@@ -65,7 +65,38 @@ main{
 .configuration{
     background-color: var(--greyer);
     padding: 1rem;
-    min-width: 80%;
+    width: min(80%, 800px);
     border-radius: 1vmin;
+    display: flex;
+    justify-content: space-between;
 }
 
+
+.list-part{
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 100px;
+}
+    .list-part #code-list{
+        overflow-y: scroll;
+    }
+
+    .list-part #action{
+        background-color: #171717;
+        height: 100%;
+        width: 100%;
+    }
+
+
+/* Button Styling */
+button{
+    cursor: pointer;
+    transition: all 150ms ease;
+    background-color: var(--mainAccent);
+    border: none;
+    color: white;
+}
+
+button:hover{
+    scale: 1.1;
+}

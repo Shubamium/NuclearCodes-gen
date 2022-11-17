@@ -14,7 +14,7 @@ let nuclearCode = 177013;
 
 // Functionality / Events
 btnEl.addEventListener("click", ()=>{
-    nuclearCode = generateCode(4, getUsePrefix() == true ? true : undefined); //Set code
+    nuclearCode = generateCode(getUsePrefix()); //Set code
     resultEl.textContent = nuclearCode;
 }) 
 
@@ -31,13 +31,12 @@ function getNuclearCode() {
 }
 
 function getUsePrefix() {
-    console.log(usePrefixEl.checked);
     return usePrefixEl.checked;
 }  
 
 
 // Main Generator Function
-function generateCode(prefix = undefined){
+function generateCode(prefix = false){
     // return 177013;
 
     // Base Number Variables
@@ -54,7 +53,7 @@ function generateCode(prefix = undefined){
 
 
     // Add prefix Functionality to start a specific number
-    if(prefix != undefined && prefixEl.value != ""){
+    if(prefix === true){
         num1 = parseInt(prefixEl.value);
         console.log(prefixEl.value);
     }
@@ -111,7 +110,6 @@ function concatNumber(...nums){
 
 
 // List Functions
-
 function addToList(codes){
 
     if(codeInList.includes(codes)) return;
@@ -119,15 +117,25 @@ function addToList(codes){
     listEl.classList.add("code-list_item");
     listEl.innerHTML = `
         <p class="code">${codes}</p>
-        <button class="btn-del" onclick="deleteThis()">Remove</div>
+        <button class="btn-del" onclick="deleteThis(this)">Remove</div>
     `
     listContainerEl.appendChild(listEl);
 
     codeInList.push(codes);
 
-    console.log(codeInList);
 }
 
+// Delete List
+function deleteThis(btn){
+    const parentEl = btn.parentElement;
+    let text = parentEl.querySelector(".code");
+    let number = parseInt(text);
+
+    // Remove the element from list
+    codeInList.shift(number);
+
+    parentEl.remove();
+}
 
 // Input Validation
 function limiter(input) {

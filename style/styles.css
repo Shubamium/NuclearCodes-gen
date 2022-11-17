@@ -42,13 +42,13 @@ main{
     width: 5rem;
     height: 4rem;
     background-image: url("../image/mainlogo.svg");
-    margin: -.9rem 0;
+    margin: -1.25rem 0;
     margin-right: -1.5rem;
     background-size: 100% 100%;
     /* background-color: var(--dark); */
     background-position: center bottom;
     background-repeat: no-repeat;
-    /* transform: scale(2.5); */
+    transform: scale(1.4);
     transform-origin: center bottom;
 }
 
@@ -56,9 +56,16 @@ main{
     background-color: var(--darker);
     padding: 1em;
     margin: 1em;
-    border-radius: 1vmin;
 }
 
     .title{
         text-align: center;
     }
+
+.configuration{
+    background-color: var(--greyer);
+    padding: 1rem;
+    min-width: 80%;
+    border-radius: 1vmin;
+}
+

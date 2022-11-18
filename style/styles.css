@@ -69,7 +69,7 @@ main{
 .configuration{
     background-color: var(--semiDark);
     padding: 1rem;
-    width: min(80%, 800px);
+    width: min(90%, 800px);
     border-radius: 1vmin;
     display: flex;
     justify-content: space-between;
@@ -304,3 +304,30 @@ input[type=number]::-webkit-outer-spin-button {
         background-color: var(--dark);
         padding: 0 .3em;
     }
+
+
+@media screen and (max-width:900px){
+
+    .configuration{
+        flex-direction:column;
+        align-items: center;
+        gap: 1em;
+    }
+}
+
+
+@media screen and (max-width:900px) {
+    main{
+        grid-template-columns: 1fr;
+        grid-template-rows: 70vh 30vh;
+    }
+    .list-part{
+        height: 100%;
+    }
+    .code-part #generated{
+        font-size: 3rem;
+        background-color: var(--semiDark);
+        margin: .2em 0;
+        padding: .2em .5em;
+    }
+}
